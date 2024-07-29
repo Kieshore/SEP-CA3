@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../checkCountry.js"></script>
+    <script src="../../header.js"></script>
+    <script src="menu2.js"></script>
+</head>
+<body>
+    <div class="body">
+        <div role="main" class="main">
+            <section class="page-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Services</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-group" id="servicesCollapsable">
+                            <div class="panel panel-default toggle" style="margin-bottom:10px;">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#servicesCollapsable" href="#collapseDelivery" onclick="changeServiceIcon(this)">
+                                            <i class="icon icon-plus plusMinusIcon" style="font-size: 0.7em;"></i>
+                                            Delivery Service
+                                            <i class="icon icon-caret-right" style="float:right;padding-top:5px;"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseDelivery" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default toggle" style="margin-bottom:10px;">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#servicesCollapsable" href="#collapseAssembly" onclick="changeServiceIcon(this)">
+                                            <i class="icon icon-plus plusMinusIcon" style="font-size: 0.7em;"></i>
+                                            Assembly Service
+                                            <i class="icon icon-caret-right" style="float:right;padding-top:5px;"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseAssembly" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default toggle" style="margin-bottom:10px;">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#servicesCollapsable" href="#collapsePlanning" onclick="changeServiceIcon(this)">
+                                            <i class="icon icon-plus plusMinusIcon" style="font-size: 0.7em;"></i>
+                                            Planning Guides & Tools Service
+                                            <i class="icon icon-caret-right" style="float:right;padding-top:5px;"></i>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapsePlanning" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="../footer.js"></script>
+            <script src="../../js/theme.plugins.js"></script>
+            <script src="../../js/theme.js"></script>
+            <script src="../../vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+            <script src="../../vendor/rs-plugin/js/jquery.themepunch.revolution.js"></script>
+            <script src="../../vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+            <script src="../../js/views/view.home.js"></script>
+            <script>
+                function changeServiceIcon(e) {
+                    var currentIcon = e.querySelector('i');
+                    var opened = currentIcon.classList.contains('icon-minus');
+                    
+                    var otherIcons = document.getElementById("servicesCollapsable").querySelectorAll('.plusMinusIcon');
+                    otherIcons.forEach(function(icon) {
+                        icon.classList.replace('icon-minus', 'icon-plus');
+                    });
+
+                    if(!opened) {
+                        currentIcon.classList.replace('icon-plus', 'icon-minus');
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

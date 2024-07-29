@@ -1,0 +1,9 @@
+<script>
+    var countryPrefix = localStorage.getItem('urlPrefix');
+
+    if (countryPrefix == null || countryPrefix == '') {
+        window.location.href = '/B/selectCountry.html';
+    } else {
+        window.location.href = '/B/' + countryPrefix + '/memberLogin.html';
+    }
+</script>

@@ -1,0 +1,91 @@
+<script src="../checkCountry.js"></script>
+<html>
+    <script src="../../header.js"></script>
+    <body>
+        <script>
+            // Function to check if a product is in favorites
+            function isProductInFavorites(sku) {
+                var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                return favorites.includes(sku);
+            }
+
+            // Function to remove product from favorites
+            function removeFromFavorites(sku) {
+                var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+                if (favorites.includes(sku)) {
+                    favorites = favorites.filter(item => item !== sku);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    // Refresh the page to reflect changes
+                    location.reload();
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+                var htmlTxt = '';
+                if (favorites.length > 0) {
+                    favorites.forEach(function(sku) {
+                        fetch(new Request('/api/getRetailProductBySku?sku=' + sku,
+                            {
+                                method: 'GET'
+                            })).then(function (response) {
+                                return response.json();
+                            }).then(function (product) {
+                                htmlTxt += '\
+                                    <li class="col-md-3 col-sm-6 col-xs-12 product" style="padding-bottom: 1%; padding-top: 2%;">\
+                                        <span class="product-thumb-info">\
+                                            <span class="product-thumb-info-image">\
+                                                <span class="product-thumb-info-act">\
+                                                    <span class="product-thumb-info-act-left">\
+                                                        <a href="/B/' + localStorage.getItem('urlPrefix') + '/retailProductDetails.html?sku=' + product.sku + '" style="color: white"><em>View Details</em></a>\
+                                                    </span>\
+                                                </span>\
+                                                <img alt="" class="img-responsive" src="' + product.imageURL + '">\
+                                            </span>\
+                                            <span class="product-thumb-info-content">\
+                                                <h4>' + product.name + '</h4>\
+                                                <span class="product-price">Price: $3' +  '.00</span>\
+                                                <button class="btn btn-link favorite-btn" onclick="removeFromFavorites(\'' + product.sku + '\')">\
+                                                    <i class="fas fa-heart" style="color: red;"></i>\
+                                                </button>\
+                                            </span>\
+                                        </span>\
+                                    </li>';
+                                document.getElementById("favoritesDisplay").innerHTML = htmlTxt;
+                            }).catch(function(error) {
+                                console.log(error);
+                            });
+                    });
+                } else {
+                    htmlTxt = '<p>No favorites selected.</p>';
+                    document.getElementById("favoritesDisplay").innerHTML = htmlTxt;
+                }
+            });
+        </script>
+        <div class="body">
+            <script src="menu2.js"></script>
+            <div class="body">
+                <div role="main" class="main">
+                    <section class="page-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>My Favorites</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="container">
+                        <div class="row">
+                            <ul id="favoritesDisplay" class="products product-thumb-info-list" style="list-style-type: none; margin-left: -3%;" data-plugin-masonry></ul>
+                        </div>
+                        <hr class="tall">
+                    </div>
+                </div>
+            </div>
+            <script src="../footer.js"></script>
+        </div>
+    </body>
+</html>
