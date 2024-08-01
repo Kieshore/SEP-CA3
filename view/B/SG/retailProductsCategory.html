@@ -21,8 +21,8 @@
                 }).then(function (data) {
                     var htmlTxt = '';
 
-                    var product = data[0]; 
-
+                    var products = data; 
+                products.forEach(product => {
                     htmlTxt += '\
                         <li class="col-md-3 col-sm-6 col-xs-12 product" style="padding-bottom: 1%; padding-top: 2%;">\
                             <span class="product-thumb-info">\
@@ -50,6 +50,8 @@
 
                     document.getElementById("retailProductsDisplay").innerHTML = htmlTxt;
                     document.getElementById("categoryTitle").innerHTML = cat;
+                });
+                    
                 }).catch(function(error) {
                     console.log(error);
                 });
