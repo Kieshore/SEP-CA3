@@ -35,7 +35,7 @@
                     document.getElementById("email").value = member.email || '';
                     document.getElementById("name").value = member.name || '';
                     document.getElementById("phone").value = member.phone || '';
-                    document.getElementById("country").value = member.country || '';
+                    document.getElementById("country").value = member.city || '';
                     document.getElementById("address").value = member.address || '';
                     document.getElementById("securityQuestion").value = member.securityQuestion || '';
                     document.getElementById("securityAnswer").value = member.securityAnswer || '';
@@ -634,7 +634,7 @@
                         email: document.getElementById("email").value,
                         name: document.getElementById("name").value,
                         phone: document.getElementById("phone").value,
-                        country: document.getElementById("country").value,
+                        countryId: document.getElementById("phone").value,
                         address: document.getElementById("address").value,
                         securityQuestion: document.getElementById("securityQuestion").value,
                         securityAnswer: document.getElementById("securityAnswer").value,

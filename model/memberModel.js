@@ -121,7 +121,7 @@ var memberDB = {
                             member.sla = result[0].SERVICELEVELAGREEMENT;
                             member.zipcode = result[0].ZIPCODE;
                             member.loyaltyTierId = result[0].LOYALTYTIER_ID;
-                            member.country = result[0].COUNTRY_ID;
+                            member.countryId = result[0].COUNTRY_ID;
                             member.wishlistId = result[0].WISHLIST_ID;
                             member.stripeCustomerId = result[0].STRIPECUSTOMERID;
                             conn.end();
@@ -248,6 +248,7 @@ var memberDB = {
                 } else {
                     var email = details.email;
                     var name = details.name;
+                    var city = 'Singapore'
                     var phone = details.phone;
                     var address = details.address;
                     var securityQuestion = details.securityQuestion;
@@ -263,7 +264,7 @@ var memberDB = {
                         var sql = 'UPDATE memberentity SET NAME=?, PHONE=?, CITY=?, ADDRESS=?, SECURITYQUESTION=?,'
                             + ' SECURITYANSWER=?, AGE=?, INCOME=?, SERVICELEVELAGREEMENT=?'
                             + ' WHERE EMAIL=?';
-                        var sqlArgs = [name, phone, null, address, securityQuestion, securityAnswer,
+                        var sqlArgs = [name, phone, city, address, securityQuestion, securityAnswer,
                             age, income, sla, email];
                         conn.query(sql, sqlArgs, function (err, result) {
                             if (err) {
@@ -279,7 +280,7 @@ var memberDB = {
                             var sql = 'UPDATE memberentity SET NAME=?, PHONE=?, CITY=?, ADDRESS=?, SECURITYQUESTION=?,'
                                 + ' SECURITYANSWER=?, AGE=?, INCOME=?, SERVICELEVELAGREEMENT=?, PASSWORDHASH=?'
                                 + ' WHERE EMAIL=?';
-                            var sqlArgs = [name, phone, null, address, securityQuestion, securityAnswer,
+                            var sqlArgs = [name, phone, , address, securityQuestion, securityAnswer,
                                 age, income, sla, hash, email];
                             conn.query(sql, sqlArgs, function (err, result) {
                                 if (err) {
